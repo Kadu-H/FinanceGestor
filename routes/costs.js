@@ -10,6 +10,7 @@ const {
 } = require("../src/controllers/costs.js");
 
 
-router.route('/').get(getAllCosts);
+router.route('/').get(getAllCosts).post(createCost);
+router.route('/:id').get(getCost).patch(updateCost).delete(deleteCost);
 
 module.exports = router;

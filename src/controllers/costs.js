@@ -3,11 +3,11 @@ const getAllCosts = (req, res) => {
 }
 
 const createCost = (req, res) => {
-    res.send("adding cost");
+    res.json(req.body);
 }
 
 const getCost = (req, res) => {
-    res.send("getcost");
+    res.json({ id: req.params.id });
 }
 
 const updateCost = (req, res) => {

@@ -16,7 +16,8 @@ function RenderView(){
 
 RenderView();
 
-app.use('/', costs);
+app.use(express.json());
+app.use('/costs', costs);
 
 app.listen(port, () => {
     console.log("Aplicação rodando porta "+port);
