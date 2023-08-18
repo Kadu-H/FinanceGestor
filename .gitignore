@@ -1,3 +1,6 @@
+# Diretorios
+db/
+
 # Logs
 logs
 *.log
