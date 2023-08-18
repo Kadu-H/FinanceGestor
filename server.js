@@ -1,7 +1,10 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 
+const connectDB = require('./db/connectMongoDB.js')
 const costs = require("./routes/costs.js");
+
+require('dotenv').config();
 
 const app = express();
 
@@ -16,9 +19,16 @@ function RenderView(){
 
 RenderView();
 
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        app.listen(port, console.log("Aplicação rodando porta "+port));
+    } catch (error) {
+        console.log("Erro: ",error);
+    }
+}
+
 app.use(express.json());
 app.use('/costs', costs);
 
-app.listen(port, () => {
-    console.log("Aplicação rodando porta "+port);
-})
+start();

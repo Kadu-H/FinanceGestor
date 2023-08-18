@@ -1,5 +1,5 @@
-# Diretorios
-db/
+# env
+.env
 
 # Logs
 logs
