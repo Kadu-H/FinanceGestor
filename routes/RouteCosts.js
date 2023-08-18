@@ -7,7 +7,7 @@ const {
     getCost,
     updateCost,
     deleteCost,
-} = require("../src/controllers/costs.js");
+} = require("../src/controllers/ControllerCosts.js");
 
 
 router.route('/').get(getAllCosts).post(createCost);

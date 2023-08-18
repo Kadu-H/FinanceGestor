@@ -2,7 +2,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 
 const connectDB = require('./db/connectMongoDB.js')
-const costs = require("./routes/costs.js");
+const costs = require("./routes/RouteCosts.js");
 
 require('dotenv').config();
 
