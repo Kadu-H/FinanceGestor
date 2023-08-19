@@ -1,24 +1,64 @@
 const Costs = require ('../models/ModelCosts.js');
 
-const getAllCosts = (req, res) => {
-    res.send("get all costs");
+const getAllCosts = async (req, res) => {
+    try{
+        const allCosts = await Costs.find({});
+        res.status(200).json(allCosts);
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
 }
 
 const createCost = async (req, res) => {
-    const cost = await Costs.create(req.body);
-    res.status(201).json({ cost });
+    try {
+        const cost = await Costs.create(req.body);
+        res.status(201).json({ cost });
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
 }
 
-const getCost = (req, res) => {
-    res.json({ id: req.params.id });
+const getCost = async (req, res) => {
+    try{
+        const Cost = await Costs.findById(req.params.id);
+
+        if(!Cost){ 
+            res.status(404).json({ msg: `No cost with id: ${req.params.id}` });
+        }
+        else{
+            res.status(200).json(Cost);
+        }
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
 }
 
-const updateCost = (req, res) => {
-    res.send("update cost");
+const updateCost = async (req, res) => {
+    try {
+        const Cost = await Costs.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if(!Cost){ 
+            res.status(404).json({ msg: `No cost for update with id: ${req.params.id}` });
+        }
+        else{
+            res.status(200).json(Cost);
+        }
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
 }
 
-const deleteCost = (req, res) => {
-    res.send("delete cost");
+const deleteCost = async (req, res) => {
+    try{
+        const Cost = await Costs.findByIdAndDelete(req.params.id);
+        if(!Cost){ 
+            res.status(404).json({ msg: `No cost for delete with id: ${req.params.id}` });
+        }
+        else{
+            res.status(200).json({ msg: `Deleted cost with id: ${req.params.id}` });
+        }
+    } catch (error){
+        res.status(500).json({ msg: error });
+    }
 }
 
 module.exports = {
