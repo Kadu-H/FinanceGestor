@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceGestor</title>
+</head>
+<body>
+    <form method="post">
+        <input type="text" name="name" id="name" required maxlength="30">
+        <select name="category" id="category">
+            <option value="Gastos Gerais" selected="selected">Gastos Gerais</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Moradia">Moradia</option>
+            <option value="Lazer e Entretenimento">Lazer e Entretenimento</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Despesas Pessoais">Despesas Pessoais</option>
+        </select>
+        <select name="type" id="type">
+            <option value="Despesa" selected="selected">Despesa</option>
+            <option value="Receita">Receita</option>
+        </select>
+        <input type="number" name="cost" id="cost" step="0.010" required>
+        <input type="submit" value="Criar">
+    </form>
+    <% Costs.forEach(function(cost) { %>
+        <div class="<%= cost.type %>">
+            <h3><%= cost.name %></h3>
+            <h4><%= cost.category %></h4>
+            <h4><%= cost.type %></h4>
+            <h4><%= cost.cost %></h4>
+        </div>
+    <% }); %>
+    <style>
+        .Despesa{
+            background-color: rgb(226, 46, 82);
+            color: white;
+            width: 100px;
+        }
+        .Receita{
+            background-color: rgb(46, 226, 121);
+            color: white;
+            width: 100px;
+        }
+    </style>
+</body>
+</html>

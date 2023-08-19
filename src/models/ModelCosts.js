@@ -15,6 +15,13 @@ const CostSchema = new mongoose.Schema({
         type: String,
         required:true,
         trim: true,
+        default: "Despesa",
+        maxlength:20,
+    },
+    category:{
+        type: String,
+        required:true,
+        trim: true,
         maxlength:15,
         default: "Gastos gerais",
     },

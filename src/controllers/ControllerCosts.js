@@ -3,7 +3,7 @@ const Costs = require ('../models/ModelCosts.js');
 const getAllCosts = async (req, res) => {
     try{
         const allCosts = await Costs.find({});
-        res.status(200).json(allCosts);
+        res.status(200).render("AllCosts.ejs",{ Costs: allCosts });
     } catch (error) {
         res.status(500).json({ msg: error });
     }
@@ -11,7 +11,12 @@ const getAllCosts = async (req, res) => {
 
 const createCost = async (req, res) => {
     try {
-        const cost = await Costs.create(req.body);
+        const reqCost = {
+            "name": String(req.body.name),
+            "cost": parseFloat(req.body.cost).toFixed(2),
+            "type": String(req.body.type)
+        }
+        const cost = await Costs.create(reqCost);
         res.status(201).json({ cost });
     } catch (error) {
         res.status(500).json({ msg: error });
