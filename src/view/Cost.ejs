@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= Cost.name %></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" name="name" id="name" value="<%= Cost.name %>" required maxlength="30">
+            <select name="category" id="category">
+                <% if (Cost.type === "Despesa") { %>
+                    <option value="Gastos Gerais" <%= Cost.category === "Gastos Gerais" ? "selected" : "" %>>Gastos Gerais</option>
+                    <option value="Alimentação" <%= Cost.category === "Alimentação" ? "selected" : "" %>>Alimentação</option>
+                    <option value="Moradia" <%= Cost.category === "Moradia" ? "selected" : "" %>>Moradia</option>
+                    <option value="Lazer e Entretenimento" <%= Cost.category === "Lazer e Entretenimento" ? "selected" : "" %>>Lazer e Entretenimento</option>
+                    <option value="Saúde" <%= Cost.category === "Saúde" ? "selected" : "" %>>Saúde</option>
+                    <option value="Despesas Pessoais" <%= Cost.category === "Despesas Pessoais" ? "selected" : "" %>>Despesas Pessoais</option>
+                <% } else { %>
+                    <option value="Salário" <%= Cost.category === "Salário" ? "selected" : "" %>>Salário</option>
+                    <option value="Renda Extra" <%= Cost.category === "Renda Extra" ? "selected" : "" %>>Renda Extra</option>
+                    <option value="Prêmio" <%= Cost.category === "Prêmio" ? "selected" : "" %>>Prêmio</option>
+                <% } %>
+            </select>
+            <select name="type" id="type">
+                <option value="Receita" <%= Cost.type === "Receita" ? "selected" : "" %>>Receita</option>
+                <option value="Despesa" <%= Cost.type === "Despesa" ? "selected" : "" %>>Despesa</option>
+            </select>
+            <input type="number" name="cost" id="cost" step="0.010" value="<%= Cost.cost %>" required>
+            <input type="submit" value="Editar">
+        </form>
+    </div>
+    <script>
+        const typeSelection = document.getElementById("type");
+        const categorySelection = document.getElementById("category");
+
+        typeSelection.addEventListener('change', function(){
+
+            categorySelection.innerHTML = '';
+            
+            if (typeSelection.value === "Despesa"){
+
+                const gastosGeraisOption = document.createElement('option');
+                gastosGeraisOption.value = "Gastos Gerais";
+                gastosGeraisOption.textContent = "Gastos Gerais";
+                gastosGeraisOption.selected = '<%= Cost.category === "Gastos Gerais" ? "selected" : "" %>';
+                categorySelection.appendChild(gastosGeraisOption);
+                
+                const alimentacaoOption = document.createElement('option');
+                alimentacaoOption.value = "Alimentação";
+                alimentacaoOption.textContent = "Alimentação";
+                alimentacaoOption.selected = '<%= Cost.category === "Alimentação" ? "selected" : "" %>';
+                categorySelection.appendChild(alimentacaoOption);
+
+                const moradiaOption = document.createElement('option');
+                moradiaOption.value = "Moradia";
+                moradiaOption.textContent = "Moradia";
+                moradiaOption.selected = '<%= Cost.category === "Moradia" ? "selected" : "" %>';
+                categorySelection.appendChild(moradiaOption);
+
+                const lazerOption = document.createElement('option');
+                lazerOption.value = "Lazer e Entretenimento";
+                lazerOption.textContent = "Lazer e Entretenimento";
+                lazerOption.selected = '<%= Cost.category === "Lazer e Entretenimento" ? "selected" : "" %>';
+                categorySelection.appendChild(lazerOption);
+
+                const saudeOption = document.createElement('option');
+                saudeOption.value = "Saúde";
+                saudeOption.textContent = "Saúde";
+                saudeOption.selected = '<%= Cost.category === "Saúde" ? "selected" : "" %>';
+                categorySelection.appendChild(saudeOption);
+
+                const despPessoaisOption = document.createElement('option');
+                despPessoaisOption.value = "Despesas Pessoais";
+                despPessoaisOption.textContent = "Despesas Pessoais";
+                despPessoaisOption.selected = '<%= Cost.category === "Despesas Pessoais" ? "selected" : "" %>';
+                categorySelection.appendChild(despPessoaisOption);
+
+            }
+            else{
+
+                const salarioOption = document.createElement('option');
+                salarioOption.value = "Salário";
+                salarioOption.textContent = "Salário";
+                salarioOption.selected = '<%= Cost.category === "Salário" ? "selected" : "" %>';
+                categorySelection.appendChild(salarioOption);
+
+                const rendaExtraOption = document.createElement('option');
+                rendaExtraOption.value = "Renda Extra";
+                rendaExtraOption.textContent = "Renda Extra";
+                rendaExtraOption.selected = '<%= Cost.category === "Renda Extra" ? "selected" : "" %>';
+                categorySelection.appendChild(rendaExtraOption);
+
+                const premioOption = document.createElement('option');
+                premioOption.value = "Prêmio";
+                premioOption.textContent = "Prêmio";
+                premioOption.selected = '<%= Cost.category === "Prêmio" ? "selected" : "" %>';
+                categorySelection.appendChild(premioOption);
+
+            }
+        // Chamar a função para atualizar as opções quando a página carregar
+        document.addEventListener('DOMContentLoaded', updateCategoryOptions);
+
+        // Chamar a função novamente quando o campo type for alterado
+        typeSelection.addEventListener('change', updateCategoryOptions);
+        });
+
+    </script>
+</body>
+</html>
