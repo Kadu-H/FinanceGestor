@@ -14,6 +14,7 @@ const createCost = async (req, res) => {
         const reqCost = {
             "name": String(req.body.name),
             "cost": parseFloat(req.body.cost).toFixed(2),
+            "category": String(req.body.category),
             "type": String(req.body.type)
         }
         const cost = await Costs.create(reqCost);

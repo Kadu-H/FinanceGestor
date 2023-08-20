@@ -6,6 +6,15 @@
     <title>FinanceGestor</title>
 </head>
 <body>
+    <% let totalValor = 0; %>
+    <% Costs.reverse().forEach(function(cost) { %>
+        <% if (cost.type === "Despesa") { %>
+            <% totalValor -= cost.cost; %>
+        <% } else { %>
+            <% totalValor += cost.cost; %>
+        <% } %>
+    <% }); %>
+    <h1>R$ <%= parseFloat(totalValor).toFixed(2) %></h1>
     <form method="post">
         <input type="text" name="name" id="name" required maxlength="30">
         <select name="category" id="category">
@@ -23,15 +32,21 @@
         <input type="number" name="cost" id="cost" step="0.010" required>
         <input type="submit" value="Criar">
     </form>
-    <% Costs.forEach(function(cost) { %>
-        <div class="<%= cost.type %>">
-            <h3><%= cost.name %></h3>
-            <h4><%= cost.category %></h4>
-            <h4><%= cost.type %></h4>
-            <h4><%= cost.cost %></h4>
-        </div>
+    <% Costs.reverse().forEach(function(cost) { %>
+        <a id="a" href="/costs/<%= cost.id %>">
+            <div class="<%= cost.type %>">
+                <h3><%= cost.name %></h3>
+                <h4><%= cost.category %></h4>
+                <h4><%= cost.type %></h4>
+                <h4><%= cost.cost %></h4>
+            </div>
+        </a>
     <% }); %>
     <style>
+        #a{
+            display: block;
+            width: 100px;
+        }
         .Despesa{
             background-color: rgb(226, 46, 82);
             color: white;
@@ -43,5 +58,74 @@
             width: 100px;
         }
     </style>
+    <script>
+        const typeSelection = document.getElementById("type");
+        const categorySelection = document.getElementById("category");
+
+        typeSelection.addEventListener('change', function(){
+
+            categorySelection.innerHTML = '';
+            
+            if (typeSelection.value === "Despesa"){
+
+                const gastosGeraisOption = document.createElement('option');
+                gastosGeraisOption.value = "Gastos Gerais";
+                gastosGeraisOption.textContent = "Gastos Gerais";
+                gastosGeraisOption.selected = "selected";
+                categorySelection.appendChild(gastosGeraisOption);
+                
+                const alimentacaoOption = document.createElement('option');
+                alimentacaoOption.value = "Alimentação";
+                alimentacaoOption.textContent = "Alimentação";
+                categorySelection.appendChild(alimentacaoOption);
+
+                const moradiaOption = document.createElement('option');
+                moradiaOption.value = "Moradia";
+                moradiaOption.textContent = "Moradia";
+                categorySelection.appendChild(moradiaOption);
+
+                const lazerOption = document.createElement('option');
+                lazerOption.value = "Lazer e Entretenimento";
+                lazerOption.textContent = "Lazer e Entretenimento";
+                categorySelection.appendChild(lazerOption);
+
+                const saudeOption = document.createElement('option');
+                saudeOption.value = "Saúde";
+                saudeOption.textContent = "Saúde";
+                categorySelection.appendChild(saudeOption);
+
+                const despPessoaisOption = document.createElement('option');
+                despPessoaisOption.value = "Despesas Pessoais";
+                despPessoaisOption.textContent = "Despesas Pessoais";
+                categorySelection.appendChild(despPessoaisOption);
+
+            }
+            else{
+
+                const salarioOption = document.createElement('option');
+                salarioOption.value = "Salário";
+                salarioOption.textContent = "Salário";
+                categorySelection.appendChild(salarioOption);
+
+                const rendaExtraOption = document.createElement('option');
+                rendaExtraOption.value = "Renda Extra";
+                rendaExtraOption.textContent = "Renda Extra";
+                rendaExtraOption.selected = "selected";
+                categorySelection.appendChild(rendaExtraOption);
+
+                const premioOption = document.createElement('option');
+                premioOption.value = "Prêmio";
+                premioOption.textContent = "Prêmio";
+                categorySelection.appendChild(premioOption);
+
+            }
+        // Chamar a função para atualizar as opções quando a página carregar
+        document.addEventListener('DOMContentLoaded', updateCategoryOptions);
+
+        // Chamar a função novamente quando o campo type for alterado
+        typeSelection.addEventListener('change', updateCategoryOptions);
+        });
+
+    </script>
 </body>
 </html>
