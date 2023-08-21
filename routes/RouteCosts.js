@@ -11,6 +11,8 @@ const {
 
 
 router.route('/').get(getAllCosts).post(createCost);
-router.route('/:id').get(getCost).patch(updateCost).delete(deleteCost);
+router.route('/:id').get(getCost);
+router.route('/update/:id').post(updateCost);
+router.route('/delete/:id').get(deleteCost);
 
 module.exports = router;

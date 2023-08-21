@@ -38,24 +38,23 @@
                 <h3><%= cost.name %></h3>
                 <h4><%= cost.category %></h4>
                 <h4><%= cost.type %></h4>
-                <h4><%= cost.cost %></h4>
+                <h4><%= parseFloat(cost.cost).toFixed(2) %></h4>
             </div>
         </a>
     <% }); %>
     <style>
         #a{
             display: block;
-            width: 100px;
+            width: 200px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
         }
         .Despesa{
             background-color: rgb(226, 46, 82);
-            color: white;
-            width: 100px;
         }
         .Receita{
             background-color: rgb(46, 226, 121);
-            color: white;
-            width: 100px;
         }
     </style>
     <script>
@@ -119,10 +118,8 @@
                 categorySelection.appendChild(premioOption);
 
             }
-        // Chamar a função para atualizar as opções quando a página carregar
         document.addEventListener('DOMContentLoaded', updateCategoryOptions);
 
-        // Chamar a função novamente quando o campo type for alterado
         typeSelection.addEventListener('change', updateCategoryOptions);
         });
 

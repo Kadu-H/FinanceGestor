@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <form method="post">
+        <form method="post" action="update/<%= Cost.id %>">
             <input type="text" name="name" id="name" value="<%= Cost.name %>" required maxlength="30">
             <select name="category" id="category">
                 <% if (Cost.type === "Despesa") { %>
@@ -27,10 +27,11 @@
                 <option value="Receita" <%= Cost.type === "Receita" ? "selected" : "" %>>Receita</option>
                 <option value="Despesa" <%= Cost.type === "Despesa" ? "selected" : "" %>>Despesa</option>
             </select>
-            <input type="number" name="cost" id="cost" step="0.010" value="<%= Cost.cost %>" required>
+            <input type="number" name="cost" id="cost" step="0.010" value="<%= parseFloat(Cost.cost).toFixed(2) %>" required>
             <input type="submit" value="Editar">
         </form>
     </div>
+
     <script>
         const typeSelection = document.getElementById("type");
         const categorySelection = document.getElementById("category");
@@ -99,10 +100,9 @@
                 categorySelection.appendChild(premioOption);
 
             }
-        // Chamar a função para atualizar as opções quando a página carregar
+
         document.addEventListener('DOMContentLoaded', updateCategoryOptions);
 
-        // Chamar a função novamente quando o campo type for alterado
         typeSelection.addEventListener('change', updateCategoryOptions);
         });
 

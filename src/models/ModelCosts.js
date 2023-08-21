@@ -22,7 +22,7 @@ const CostSchema = new mongoose.Schema({
         type: String,
         required:true,
         trim: true,
-        maxlength:15,
+        maxlength:30,
         default: "Gastos gerais",
     },
 });

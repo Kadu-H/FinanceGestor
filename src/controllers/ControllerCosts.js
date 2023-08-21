@@ -41,12 +41,18 @@ const getCost = async (req, res) => {
 
 const updateCost = async (req, res) => {
     try {
+        const reqCost = {
+            "name": String(req.body.name),
+            "cost": parseFloat(req.body.cost).toFixed(2),
+            "category": String(req.body.category),
+            "type": String(req.body.type)
+        }
         const Cost = await Costs.findByIdAndUpdate(req.params.id, reqCost, { new: true, runValidators: true });
         if(!Cost){ 
             res.status(404).json({ msg: `No cost for update with id: ${req.params.id}` });
         }
         else{
-            res.status(200).json(Cost);
+            res.status(200).redirect('/costs');
         }
     } catch (error) {
         res.status(500).json({ msg: error });
