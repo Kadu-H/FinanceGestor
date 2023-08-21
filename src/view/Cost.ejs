@@ -30,6 +30,9 @@
             <input type="number" name="cost" id="cost" step="0.010" value="<%= parseFloat(Cost.cost).toFixed(2) %>" required>
             <input type="submit" value="Editar">
         </form>
+        <form method="get" action="delete/<%= Cost.id %>">
+            <input type="submit" value="Deletar">
+        </form>
     </div>
 
     <script>

@@ -66,7 +66,7 @@ const deleteCost = async (req, res) => {
             res.status(404).json({ msg: `No cost for delete with id: ${req.params.id}` });
         }
         else{
-            res.status(200).json({ msg: `Deleted cost with id: ${req.params.id}` });
+            res.status(200).redirect('/costs');
         }
     } catch (error){
         res.status(500).json({ msg: error });
