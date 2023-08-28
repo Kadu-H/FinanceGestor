@@ -3,7 +3,7 @@ const modelGoals = require("../models/ModelGoals.js");
 const getAllGoals = async (req, res) => {
     try{
         const allGoals = await modelGoals.find({});
-        res.status(200).json(allGoals)
+        res.status(200).render("AllGoals.ejs", { Goals: allGoals });
     } catch(error){
         res.status(500).json({ msg:error });
     }

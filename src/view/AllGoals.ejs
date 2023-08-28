@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceGestor</title>
+</head>
+<body>
+    <h1>Metas</h1>
+    <form method="post">
+        <input type="text" name="name" id="name" required maxlength="30">
+        <select name="category" id="category">
+            <option value="Moradia">Moradia</option>
+            <option value="Lazer e Entretenimento">Lazer e Entretenimento</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Metas Pessoais">Metas Pessoais</option>
+        </select>
+        <input type="number" name="goal" id="goal" step="0.010" required>
+        <input type="submit" value="Criar">
+    </form>
+    <% Goals.reverse().forEach(function(goal) { %>
+        <a id="a" href="/goals/<%= goal.id %>">
+            <div class="meta">
+                <h3><%= goal.name %></h3>
+                <h4><%= goal.category %></h4>
+                <h4><%= parseFloat(goal.goal).toFixed(2) %></h4>
+            </div>
+        </a>
+    <% }); %>
+    <style>
+        #a{
+            display: block;
+            width: 200px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+        .meta{
+            background-color: rgb(28, 78, 243);
+        }
+    </style>
+</body>
+</html>
