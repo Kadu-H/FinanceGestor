@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= Goal.name %></title>
+</head>
+<body>
+    <h1>Meta</h1>
+    <form method="post" action="update/<%= Goal.id %>">
+        <input type="text" name="name" id="name" value="<%= Goal.name %>" required maxlength="30">
+        <select name="category" id="category">
+            <option value="Moradia" <%= Goal.category === "Moradia" ? "selected" : "" %>>Moradia</option>
+            <option value="Lazer e Entretenimento" <%= Goal.category === "Lazer e Entretenimento" ? "selected" : "" %>>Lazer e Entretenimento</option>
+            <option value="Saúde" <%= Goal.category === "Saúde" ? "selected" : "" %>>Saúde</option>
+            <option value="Metas Pessoais" <%= Goal.category === "Metas Pessoais" ? "selected" : "" %>>Metas Pessoais</option>
+        </select>
+        <input type="number" name="goal" id="goal" value="<%= parseFloat(Goal.goal).toFixed(2) %>" step="0.010" required>
+        <input type="submit" value="Editar">
+    </form>
+    <form method="get" action="delete/<%= Goal.id %>">
+        <input type="submit" value="Deletar">
+    </form>
+</body>
+</html>

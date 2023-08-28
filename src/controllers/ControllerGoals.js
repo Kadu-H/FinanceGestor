@@ -12,8 +12,7 @@ const getAllGoals = async (req, res) => {
 const createGoal = async (req, res) => {
     try{
         const goal = await modelGoals.create(req.body);
-        console.log(goal);
-        res.status(200).json({goal});
+        res.status(200).redirect('/goals');
     } catch(error){
         res.status(500).json({ msg:error });
     }
@@ -25,7 +24,7 @@ const getGoal = async (req, res) => {
         if(!goal){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            res.status(200).json({goal});
+            res.status(200).render("Goal.ejs", { Goal:goal });
         }
     } catch(error){
         res.status(500).json({ msg:error });
@@ -38,7 +37,7 @@ const updateGoal = async (req, res) => {
         if(!goal){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            res.status(200).json({goal});
+            res.status(200).redirect("/goals");
         }
     } catch(error){
         res.status(500).json({ msg:error });
@@ -47,11 +46,13 @@ const updateGoal = async (req, res) => {
 
 const deleteGoal = async (req, res) => {
     try{
+        console.log("deletado");
         const goal = await modelGoals.findByIdAndDelete(req.params.id);
         if(!goal){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            res.status(200).json({goal});
+            console.log("deletado");
+            res.status(200).redirect("/goals");
         }
     } catch(error){
         res.status(500).json({ msg:error });
