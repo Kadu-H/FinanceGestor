@@ -1,9 +1,10 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 
-const connectDB = require('./db/connectMongoDB.js')
+const connectDB = require('./db/connectMongoDB.js');
 const costsRoute = require("./routes/RouteCosts.js");
-const goalsRoute = require("./routes/RouteGoals.js")
+const goalsRoute = require("./routes/RouteGoals.js");
+const aportsRoute = require("./routes/RouteAports.js");
 
 require('dotenv').config();
 
@@ -32,5 +33,6 @@ const start = async () => {
 app.use(express.json());
 app.use('/costs', costsRoute);
 app.use('/goals', goalsRoute);
+app.use('/aports', aportsRoute);
 
 start();
