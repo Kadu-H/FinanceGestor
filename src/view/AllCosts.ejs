@@ -7,7 +7,7 @@
 </head>
 <body>
     <% let totalValor = 0; %>
-    <% Costs.reverse().forEach(function(cost) { %>
+    <% Costs.forEach(function(cost) { %>
         <% if (cost.type === "Despesa") { %>
             <% totalValor -= cost.cost; %>
         <% } else { %>
@@ -32,7 +32,7 @@
         <input type="number" name="cost" id="cost" step="0.010" required>
         <input type="submit" value="Criar">
     </form>
-    <% Costs.reverse().forEach(function(cost) { %>
+    <% Costs.forEach(function(cost) { %>
         <a id="a" href="/costs/<%= cost.id %>">
             <div class="<%= cost.type %>">
                 <h3><%= cost.name %></h3>

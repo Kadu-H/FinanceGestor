@@ -1,4 +1,5 @@
 const modelGoals = require("../models/ModelGoals.js");
+const modelAports = require("../models/ModelAport.js");
 
 const getAllGoals = async (req, res) => {
     try{
@@ -21,10 +22,11 @@ const createGoal = async (req, res) => {
 const getGoal = async (req, res) => {
     try{
         const goal = await modelGoals.findById(req.params.id);
+        const allAports = await modelAports.find({ parentId: req.params.id });
         if(!goal){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            res.status(200).render("Goal.ejs", { Goal:goal });
+            res.status(200).render("Goal.ejs", { Goal: goal, Aports: allAports });
         }
     } catch(error){
         res.status(500).json({ msg:error });

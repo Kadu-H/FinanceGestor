@@ -18,7 +18,7 @@
         <input type="number" name="goal" id="goal" step="0.010" required>
         <input type="submit" value="Criar">
     </form>
-    <% Goals.reverse().forEach(function(goal) { %>
+    <% Goals.forEach(function(goal) { %>
         <a id="a" href="/goals/<%= goal.id %>">
             <div class="meta">
                 <h3><%= goal.name %></h3>

@@ -21,7 +21,6 @@ const createCost = async (req, res) => {
 const getCost = async (req, res) => {
     try{
         const Cost = await Costs.findById(req.params.id);
-
         if(!Cost){ 
             res.status(404).json({ msg: `No cost with id: ${req.params.id}` });
         }

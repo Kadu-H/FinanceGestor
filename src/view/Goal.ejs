@@ -6,7 +6,12 @@
     <title><%= Goal.name %></title>
 </head>
 <body>
-    <h1>Meta</h1>
+    <h1><%= Goal.name %></h1>
+    <% let totalValor = Goal.goal; %>
+    <% Aports.reverse().forEach(function(aport) { %>
+            <% totalValor -= aport.aport; %>
+    <% }); %>
+    <h2>R$ <%= parseFloat(totalValor).toFixed(2); %></h2>
     <form method="post" action="update/<%= Goal.id %>">
         <input type="text" name="name" id="name" value="<%= Goal.name %>" required maxlength="30">
         <select name="category" id="category">
@@ -21,5 +26,13 @@
     <form method="get" action="delete/<%= Goal.id %>">
         <input type="submit" value="Deletar">
     </form>
+    <% Aports.forEach(function(aport) { %>
+        <a id="a" href="/aports/<%= Goal.id %>/<%= aport.id %>">
+            <div>
+                <h3>Aport</h3>
+                <h4><%= parseFloat(aport.aport).toFixed(2) %></h4>
+            </div>
+        </a>
+    <% }); %>
 </body>
 </html>
