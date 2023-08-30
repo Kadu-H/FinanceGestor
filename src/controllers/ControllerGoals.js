@@ -48,12 +48,10 @@ const updateGoal = async (req, res) => {
 
 const deleteGoal = async (req, res) => {
     try{
-        console.log("deletado");
         const goal = await modelGoals.findByIdAndDelete(req.params.id);
         if(!goal){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            console.log("deletado");
             res.status(200).redirect("/goals");
         }
     } catch(error){

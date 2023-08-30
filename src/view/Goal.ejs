@@ -26,13 +26,35 @@
     <form method="get" action="delete/<%= Goal.id %>">
         <input type="submit" value="Deletar">
     </form>
+    <br>
+    <br>
+    <br>
+    <h2>Aports</h2>
+    <form action="createAport/<%= Goal.id %>" method="post">
+        <input type="text" id="aport" name="aport">
+        <input type="submit" value="Criar Aport">
+    </form>
     <% Aports.forEach(function(aport) { %>
-        <a id="a" href="/aports/<%= Goal.id %>/<%= aport.id %>">
+        <a id="a">
             <div>
-                <h3>Aport</h3>
-                <h4><%= parseFloat(aport.aport).toFixed(2) %></h4>
+                <h4>R$ <%= parseFloat(aport.aport).toFixed(2) %></h4>
+                <form action="delete/<%= Goal.id %>/<%= aport.id %>" method="get">
+                    <input type="submit" value="Deletar">
+                </form>
             </div>
         </a>
     <% }); %>
+    <style>
+        #a{
+            display: block;
+            width: 200px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+        #a div{
+            background-color: rgb(85, 84, 84);
+        }
+    </style>
 </body>
 </html>

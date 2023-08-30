@@ -3,7 +3,7 @@ const modelAports = require("../models/ModelAport.js");
 const getAllAports = async (req, res) => {
     try{
         const allAports = await modelAports.find({ parentId: req.params.parentId });
-        res.status(200).json({allAports});
+        res.status(200).render('Goal.ejs', { Aports: allAports });
     } catch(error){
         res.status(500).json({ msg:error });
     }
@@ -16,7 +16,7 @@ const createAport = async (req, res) => {
             parentId: req.params.parentId,
         }
         const aport = await modelAports.create(info);
-        res.status(200).json({aport});
+        res.status(200).redirect(`/goals/${req.params.parentId}`);
     } catch(error){
         res.status(500).json({ msg:error });
     }
@@ -54,7 +54,7 @@ const deleteAport = async (req, res) => {
         if(!aport){
             res.status(404).json({ msg:`No goal with id ${req.params.id}` });
         } else{
-            res.status(200).json({aport});
+            res.status(200).redirect(`/goals/${req.params.parentId}`);
         }
     } catch(error){
         res.status(500).json({ msg:error });
