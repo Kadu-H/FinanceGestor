@@ -5,18 +5,25 @@ O Gestor de Finanças é uma aplicação que permite aos usuários controlar sua
 ## Funcionalidades
 
 1. Adição, subtração, visualização, atualização e exclusão de transações financeiras.
-2. Categorização de transações.
-3. Cálculo de balanço financeiro com base nas transações.
+2. Adição, subtração, visualização, atualização e exclusão de metas financeiras.
+3. Categorização de transações.
+4. Categorização de metas.
+5. Cálculo de balanço financeiro com base nas transações.
+6. Cálculo de balanço financeiro com base nos aportes dentro das metas.
 
 ## Fluxo de Trabalho
 
 O FinanceGestor é fácil de usar:
 
-1. O usuário acessa o site do FinanceGestor.
+1. O usuário acessa a aba de receitas e despesas do FinanceGestor.
 2. Insere a transação desejada no campo apropriado.
 3. Clique no botão "Criar" para criar uma despesa ou receita.
 4. Um bloco de transição é criado contendo informações sobre a transição.
-5. Os usuários podem visualizar, criar, editar e remover as transações.
+5. O usuario acessa a aba de metas do FinanceGestor.
+6. Insere a meta no campo apropriado.
+7. Clique no botão "Criar" para criar uma meta.
+8. O usuario insere os aportes dentro das metas.
+9. Os usuários podem visualizar, criar, editar e remover as transações, metas e aportes.
 
 ## Requisitos e Instalação
 
@@ -30,16 +37,17 @@ npm install
 ```
 4. Após a instalação, execute o seguinte comando para iniciar o servidor:  
 ```
-npm server.js
+npm start
 ```
-5. Abra o navegador e acesse `http://localhost:3000/costs` para acessar o QrChat.
+5. Abra o navegador e acesse `http://localhost:3000/costs` para acessar a aba de receitas e despesas do FinanceGestor.
+6. Abra o navegador e acesse `http://localhost:3000/goals` para acessar a aba de metas do FinanceGestor.
 
 ## Estrutura do Projeto
 
 A estrutura do projeto é bastante simples:
 
 - `server.js`: O arquivo principal que define o servidor Express e as rotas.
-- `routes/RouteCosts.js`: O arquivo que define as rotas.
+- `routes/`: pasta que define as rotas.
 - `db/connectMongoDB.js`: O arquivo que faz a conexão com o MongoDB.
 - `src/controler/`: Armazena os arquivos de controle de requisições usado pelo Express.
 - `src/models/`: Armazena os arquivos de modelagem de dados usados pelo banco MongoDB.
